@@ -5,6 +5,7 @@ const show = ref(false);
 onMounted(() => {
   show.value = true;
 });
+// comment
 </script>
 
 <template>
