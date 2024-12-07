@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import UserNavBar from '../../components/User/UserNavBar.vue';
-import emailjs from '@emailjs/browser';
+// import emailjs from '@emailjs/browser';
 const show = ref(false);
 onMounted(() => {
   show.value = true;
