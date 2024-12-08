@@ -33,12 +33,20 @@
   --color-background: var(--c-white);
   --color-background-soft: var(--c-white-soft);
   --color-background-dark: var(--c-black);
+  --color-background-button-secondary: var(--c-blue);
 
   --color-text-primary: var(--c-black-mute);
   --color-text-secondary: var(--c-white-mute);
   --color-text-accent-dark: var(--c-black-soft);
   --color-text-accent-light: var(--c-white);
   --color-text-info: var(--c-grey);
+
+  --color-outline-dark: var(--c-black);
+  --color-outline-light: var(--c-white);
+
+  --color-divider: var(--c-divider-light);
+  --color-input-border: var(--c-grey-soft);
+  --color-dropdown-hover: var(--c-grey-mute);
 
   --fs-heading: var(--fs-h1);
   --fs-subheading: var(--fs-h2);
@@ -47,13 +55,6 @@
   --fw-heading: var(--fw-bolder);
   --fw-strong: var(--fw-bold);
   --fw-highlight: var(--fw-sm-bold);
-
-  --color-outline-dark: var(--c-black);
-  --color-outline-light: var(--c-white);
-
-  --color-divider: var(--c-divider-light);
-  --color-input-border: var(--c-grey-soft);
-  --color-dropdown-hover: var(--c-grey-mute);
 }
 
 *,

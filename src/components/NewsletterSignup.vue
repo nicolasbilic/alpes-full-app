@@ -180,7 +180,7 @@ const handleSubmit = (event: Event) => {
 .contact-form-container input[type='submit'] {
   width: 100%;
   padding: 10px;
-  background-color: var(--c-blue);
+  background-color: var(--color-background-button-secondary);
   color: #fff;
   font-weight: var(--fw-strong);
   font-size: 16px;

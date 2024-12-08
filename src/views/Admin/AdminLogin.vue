@@ -143,7 +143,7 @@ input[type='submit'] {
   font-size: 16px;
   font-weight: bold;
   color: #fff;
-  background-color: var(--c-blue);
+  background-color: var(--color-background-button-secondary);
   padding: 10px;
   margin: 15px 0 20px;
   transition: background-color 0.3s ease-in-out;

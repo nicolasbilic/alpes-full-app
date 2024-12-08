@@ -486,7 +486,7 @@ onMounted(() => {
   width: calc(100% - 0px);
   padding: 10px;
   margin: 15px auto 0px auto;
-  background: var(--c-blue);
+  background: var(--color-background-button-secondary);
   box-shadow: 0 4px 6px rgba(57, 118, 155, 0.2);
   border: none;
   border-radius: var(--radius);

@@ -69,7 +69,7 @@ onClickOutside(tidyWidget, closeWidget);
   padding: 10px;
   margin: 15px auto 0px auto;
   box-shadow: 0 4px 6px rgba(57, 118, 155, 0.2);
-  background: var(--c-blue);
+  background: var(--color-background-button-secondary);
   border: none;
   border-radius: var(--radius);
   cursor: pointer;

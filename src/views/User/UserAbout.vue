@@ -1,30 +1,73 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import UserNavBar from '../../components/User/UserNavBar.vue';
 const show = ref(false);
+const showHeader = ref(false);
+
+// Références pour chaque élément (avec un état de visibilité unique)
+const isElementVisible = ref([false, false, false, false, false]); // Un état pour chaque div visible
+// Suivi des éléments déjà animés pour éviter les répétitions (reste en place)
+const hasElementBeenVisible = ref([false, false, false, false, false]);
+
+const checkVisibility = () => {
+  const elements = [
+    document.getElementById('target1'),
+    document.getElementById('target2'),
+    document.getElementById('target3'),
+    document.getElementById('target4'),
+    document.getElementById('target5'),
+  ];
+
+  elements.forEach((element, index) => {
+    if (element && !hasElementBeenVisible.value[index]) {
+      const rect = element.getBoundingClientRect();
+      // Si l'élément est visible et qu'il n'a pas déjà été marqué comme visible
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        isElementVisible.value[index] = true;
+        hasElementBeenVisible.value[index] = true;  // Marquer l'élément comme déjà visible
+      }
+    }
+  });
+};
+
 onMounted(() => {
   show.value = true;
+  // vue.js anime show et showHeader en même temps à moins que showHeader ait un delay, même 0 (fonctionnement interne de vue.js)
+  setTimeout(() => {
+    showHeader.value = true;
+  }, 0);
+  window.addEventListener('scroll', checkVisibility);
+  window.addEventListener('resize', checkVisibility);
+  checkVisibility();
 });
-// comment
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', checkVisibility);
+  window.removeEventListener('resize', checkVisibility);
+});
 </script>
 
 <template>
   <transition name="fade-slide">
-    <section v-if="show" class="about-page">
+    <section class="about-page" v-if="show">
+      <!-- <section class="about-page"> -->
       <UserNavBar navColor="black" />
-      <div class="about-header">
-        <figure>
-          <img src="../../assets/webp/alpes-soleil.webp" alt="Les Alpes ensoleillées" width="337" height="202">
-          <figcaption>La nature est reine ici.</figcaption>
-        </figure>
-      </div>
+      <!-- <div class="about-header"> -->
+      <transition name="fade-slide-up">
+        <div class="about-header" v-if="showHeader">
+          <figure>
+            <img src="../../assets/webp/alpes-soleil.webp" alt="Les Alpes ensoleillées" width="337" height="202">
+            <figcaption>La nature est reine ici.</figcaption>
+          </figure>
+        </div>
+      </transition>
 
-      <div class="our-company">
+      <div class="our-company transition-section" id="target1" :class="{ visible: isElementVisible[0] }">
         <h1>Notre entreprise</h1>
         <p>ALPES est là pour vous accompagner pendant toute votre ascension</p>
       </div>
 
-      <div class="summit-section">
+      <div class="summit-section transition-section" id="target2" :class="{ visible: isElementVisible[1] }">
         <div class="figures-section">
           <h2>Le sommet n'est que le début</h2>
           <div class="figures">
@@ -48,23 +91,23 @@ onMounted(() => {
         </div>
         <div class="summit-img-container">
           <img src="../../assets/webp/alpes-groupe.webp" alt="Groupe de personnes grimpant les Alpes" width="335"
-            height="335">
+            height="335" loading="lazy">
         </div>
       </div>
 
-      <div class="equipment-section">
+      <div class="equipment-section transition-section" id="target3" :class="{ visible: isElementVisible[2] }">
         <p>Nos équipementiers sont parmi les plus renommés</p>
         <div class="equipment-logos">
           <img src="../../assets/svg/mountain-hard-wear-logo.svg" alt="Logo de Mountain Hard Wear" width="150"
-            height="78">
-          <img src="../../assets/svg/millet-logo.svg" alt="Logo de Millet" width="150" height="91">
-          <img src="../../assets/svg/mammut-logo.svg" alt="Logo de Mammut" width="150" height="117">
-          <img src="../../assets/svg/norrona-logo.svg" alt="Logo de Norrona" width="150" height="133">
-          <img src="../../assets/svg/odlo-logo.svg" alt="Logo de Odlo" width="150" height="128">
+            height="78" loading="lazy">
+          <img src="../../assets/svg/millet-logo.svg" alt="Logo de Millet" width="150" height="91" loading="lazy">
+          <img src="../../assets/svg/mammut-logo.svg" alt="Logo de Mammut" width="150" height="117" loading="lazy">
+          <img src="../../assets/svg/norrona-logo.svg" alt="Logo de Norrona" width="150" height="133" loading="lazy">
+          <img src="../../assets/svg/odlo-logo.svg" alt="Logo de Odlo" width="150" height="128" loading="lazy">
         </div>
       </div>
 
-      <div class="team-section">
+      <div class="team-section transition-section" id="target4" :class="{ visible: isElementVisible[3] }">
         <h2>Rencontrez notre équipe</h2>
         <p>Notre philosophie est simple — embaucher une équipe diverse, passionnée et
           <span class="br"></span>
@@ -72,42 +115,43 @@ onMounted(() => {
         </p>
         <div class="team-member-container">
           <div class="team-member">
-            <img src="../../assets/webp/team-member-3.png" alt="Nicolas Trevino" width="97" height="97">
+            <img src="../../assets/webp/team-member-3.png" alt="Nicolas Trevino" width="97" height="97" loading="lazy">
             <p>Nicolas Trevino</p>
             <p>Fondateur et PDG</p>
           </div>
           <div class="team-member">
-            <img src="../../assets/webp/team-member-2.png" alt="Drew Cano" width="97" height="97">
+            <img src="../../assets/webp/team-member-2.png" alt="Drew Cano" width="97" height="97" loading="lazy">
             <p>Drew Cano</p>
             <p>Alpiniste Senior</p>
           </div>
           <div class="team-member">
-            <img src="../../assets/webp/team-member-1.png" alt="Drew Cano" width="97" height="97">
+            <img src="../../assets/webp/team-member-1.png" alt="Lyle Kauffman" width="97" height="97" loading="lazy">
             <p>Lyle Kauffman</p>
             <p>Guide de Montagne</p>
           </div>
           <div class="team-member">
-            <img src="../../assets/webp/team-member-4.png" alt="Drew Cano" width="97" height="97">
+            <img src="../../assets/webp/team-member-4.png" alt="Alisa Hester" width="97" height="97" loading="lazy">
             <p>Alisa Hester</p>
             <p>Chef d'Expédition</p>
           </div>
           <div class="team-member">
-            <img src="../../assets/webp/team-member-5.png" alt="Drew Cano" width="97" height="97">
+            <img src="../../assets/webp/team-member-5.png" alt="Leyton Fields" width="97" height="97" loading="lazy">
             <p>Leyton Fields</p>
             <p>Spécialiste en Sécurité Alpine</p>
           </div>
           <div class="team-member">
-            <img src="../../assets/webp/team-member-6.png" alt="Drew Cano" width="97" height="97">
+            <img src="../../assets/webp/team-member-6.png" alt="Isabelle Fournier" width="97" height="97"
+              loading="lazy">
             <p>Isabelle Fournier</p>
             <p>Directeur des Expéditions</p>
           </div>
           <div class="team-member">
-            <img src="../../assets/webp/team-member-7.png" alt="Drew Cano" width="97" height="97">
+            <img src="../../assets/webp/team-member-7.png" alt="Liam Hood" width="97" height="97" loading="lazy">
             <p>Liam Hood</p>
             <p>Directeur de Camp</p>
           </div>
           <div class="team-member">
-            <img src="../../assets/webp/team-member-8.png" alt="Drew Cano" width="97" height="97">
+            <img src="../../assets/webp/team-member-8.png" alt="Rosalee Melvin" width="97" height="97" loading="lazy">
             <p>Rosalee Melvin</p>
             <p>Alpiniste Senior</p>
           </div>
@@ -115,7 +159,7 @@ onMounted(() => {
       </div>
 
 
-      <div class="services-section">
+      <div class="services-section transition-section" id="target5" :class="{ visible: isElementVisible[4] }">
         <h2>Nos services à ALPES</h2>
         <p>Nos valeurs communes guident notre équipe à grimper toujours plus haut.
         </p>
@@ -181,20 +225,51 @@ onMounted(() => {
 </template>
 
 <style scoped>
-/***** Animation de chargement *****/
-.fade-slide-enter-active {
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
+/***** Animation de chargement de la page *****/
 .fade-slide-enter-from {
   opacity: 0;
   transform: translateY(30px);
+}
+
+.fade-slide-enter-active {
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .fade-slide-enter-to {
   opacity: 1;
   transform: translateY(0);
 }
+
+
+/***** Animation de chargement du header *****/
+.fade-slide-up-enter-from {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.fade-slide-up-enter-active {
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  /* transition: nom | durée de transition | animation /| délai */
+}
+
+.fade-slide-up-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/***** Animation de chargement de section *****/
+.transition-section {
+  opacity: 0;
+  transform: translateY(250px);
+  transition: all 0.9s ease-in-out;
+}
+
+.transition-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
 /****** Global ******/
 .about-page {
@@ -209,6 +284,7 @@ h1 {
 h2 {
   padding: 1rem 0;
 }
+
 
 /****** Header ******/
 .about-header {
@@ -232,6 +308,7 @@ figure figcaption {
   padding-top: 5px;
 }
 
+
 /****** Our company ******/
 .our-company {
   padding: 6rem 0 5rem;
@@ -244,11 +321,13 @@ figure figcaption {
   padding: 0 1rem;
 }
 
+
 /****** Summit section ******/
 .summit-section {
   display: flex;
   flex-direction: column;
   padding: 4rem 20px;
+  margin-bottom: 15rem;
   background-color: var(--color-background-soft);
 }
 
@@ -274,10 +353,17 @@ figure figcaption {
   text-align: center;
 }
 
-.figures span {
+.figures-item span {
+  display: inline-block;
   font-size: 40px;
   font-weight: var(--fw-strong);
   color: var(--c-blue);
+  transition: transform .3s;
+}
+
+.figures-item span:hover,
+.figures-item span:focus {
+  transform: scale(1.1);
 }
 
 .figures p {
@@ -306,7 +392,7 @@ figure figcaption {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 7rem 20px;
+  padding: 0rem 20px 15rem;
   margin: 0 2rem;
 }
 
@@ -330,7 +416,7 @@ figure figcaption {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 7rem 20px;
+  padding: 0rem 20px 15rem;
 }
 
 .team-section p {
@@ -385,14 +471,13 @@ figure figcaption {
 }
 
 
-
 /*********** Services section ***********/
 .services-section {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 7rem 20px;
+  padding: 0rem 20px 10rem;
 }
 
 .services-section p {
@@ -435,6 +520,8 @@ figure figcaption {
 .service svg:focus {
   scale: 1.10;
 }
+
+
 
 /****** Media Queries ******/
 @media (width > 500px) {

@@ -71,7 +71,7 @@ a {
 
 .newsletter-container {
   margin-top: 48px;
-  background-color: var(--c-blue);
+  background-color: var(--color-background-button-secondary);
   border-radius: var(--radius);
   border: none;
   padding: 20px;
@@ -140,7 +140,7 @@ nav button {
   padding: 10px 0;
   font-weight: var(--fw-strong);
   color: var(--c-white-mute);
-  background-color: var(--c-blue);
+  background-color: var(--color-background-button-secondary);
   border-radius: var(--radius);
   border: none;
   cursor: pointer;

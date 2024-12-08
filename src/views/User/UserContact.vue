@@ -317,7 +317,7 @@ input[type='submit'] {
   color: var(--color-text-accent-light);
   padding: 10px;
   margin-bottom: 20px;
-  background-color: var(--c-blue);
+  background-color: var(--color-background-button-secondary);
   border: none;
   transition: opacity 0.3s ease-in-out;
   border-radius: var(--radius);
