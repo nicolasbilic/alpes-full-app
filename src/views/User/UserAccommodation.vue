@@ -16,7 +16,7 @@ onMounted(() => {
         <div class="residences">
           <div class="residence">
             <div class="img-container">
-              <img src="../../assets/webp/chalet-cimes.webp" alt="Chalet des Cimes" fetchpriority="high">
+              <img src="../../assets/webp/chalet-cimes.webp" alt="Chalet des Cimes">
             </div>
             <div class="link-to-residence">
               <p>Chalet des Cimes</p>
@@ -29,7 +29,7 @@ onMounted(() => {
           </div>
           <div class="residence">
             <div class="img-container">
-              <img src="../../assets/webp/chalet-alpestre.webp" alt="Refuge Alpestre" fetchpriority="high">
+              <img src="../../assets/webp/chalet-alpestre.webp" alt="Refuge Alpestre">
             </div>
             <div class="link-to-residence">
               <p>Refuge Alpestre</p>
@@ -42,7 +42,7 @@ onMounted(() => {
           </div>
           <div class="residence">
             <div class="img-container">
-              <img src="../../assets/webp/evasion-montagnarde.webp" alt="Évasion montagnarde" fetchpriority="high">
+              <img src="../../assets/webp/evasion-montagnarde.webp" alt="Évasion montagnarde">
             </div>
             <div class="link-to-residence">
               <p>La montagne</p>
