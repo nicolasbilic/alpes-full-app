@@ -1,12 +1,48 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import UserNavBar from '../../components/User/UserNavBar.vue'
 import NewsletterSignup from '../../components/NewsletterSignup.vue'
 
 const show = ref(false);
+const isElementVisible = ref([false, false, false, false, false]);
+const hasElementBeenVisible = ref([false, false, false, false, false]);
+
+const checkVisibility = () => {
+  const elements = [
+    document.getElementById('target1'),
+    document.getElementById('target2'),
+    document.getElementById('target3'),
+    document.getElementById('target4'),
+    document.getElementById('target5'),
+  ];
+
+  elements.forEach((element, index) => {
+    // element se réfère à target1 voir "const elements" : c’est un élément de la page (par ex/ une image, ici une div)
+    if (element && !hasElementBeenVisible.value[index]) {
+      // getBoundingClientRect donne les coordonnées de l’élément par rapport à la fenêtre du navigateur (l’écran)
+      const rect = element.getBoundingClientRect();
+      // Si l'élément est visible et qu'il n'a pas déjà été marqué comme visible
+      //  if (haut de la div "target1" par rapport au haut de la fenêtre visible (en px) < hauteur de la fenetre &&&&&&&&& bas de la div "target1" par rapport au haut de la fenêtre visible (en px) > 0 (0px, le haut de la fenêtre, donc il est visible))
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        // marque l'élément comme visible
+        isElementVisible.value[index] = true;
+        hasElementBeenVisible.value[index] = true;  // Marquer l'élément comme déjà visible
+      }
+    }
+  });
+};
+
 onMounted(() => {
   show.value = true;
-})
+  window.addEventListener('scroll', checkVisibility);
+  window.addEventListener('resize', checkVisibility);
+  checkVisibility();
+});
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', checkVisibility);
+  window.removeEventListener('resize', checkVisibility);
+});
 </script>
 
 <template>
@@ -55,7 +91,7 @@ onMounted(() => {
       </section>
 
       <div class="activities-container">
-        <div class="activity">
+        <div class="activity transition-section" id="target1" :class="{ visible: isElementVisible[0] }">
           <div class="activity-content">
             <h2>Ascension Épique</h2>
             <p>Participez à une aventure inoubliable en gravissant le plus haut sommet d’Europe occidentale, le Mont
@@ -69,10 +105,10 @@ onMounted(() => {
           </div>
           <div class="activity-img">
             <img src="../../assets/webp/the-alps-man-walking.webp"
-              alt="Homme marchant sur la neige pendant l'ascension des Alpes" width="550" height="550">
+              alt="Homme marchant sur la neige pendant l'ascension des Alpes" width="550" height="550" loading="lazy">
           </div>
         </div>
-        <div class="activity">
+        <div class="activity transition-section" id="target2" :class="{ visible: isElementVisible[1] }">
           <div class="activity-content order-2">
             <h2>La Mer de Glace</h2>
             <p>Affrontez l’un des glaciers les plus impressionnants des Alpes lors d’une traversée technique de la Mer
@@ -87,10 +123,10 @@ onMounted(() => {
           </div>
           <div class="activity-img">
             <img src="../../assets/webp/alpes-mer-de-glace.webp"
-              alt="Homme marchant sur la neige pendant l'ascension des Alpes" width="550" height="550">
+              alt="Homme marchant sur la neige pendant l'ascension des Alpes" width="550" height="550" loading="lazy">
           </div>
         </div>
-        <div class="activity">
+        <div class="activity transition-section" id="target3" :class="{ visible: isElementVisible[2] }">
           <div class="activity-content">
             <h2>Le Tour du Mont Rose</h2>
             <p>Engagez-vous dans une aventure exigeante en entreprenant le tour du Mont Rose, une expédition de
@@ -103,13 +139,13 @@ onMounted(() => {
           </div>
           <div class="activity-img">
             <img src="../../assets/webp/les-alpes-mont-rose.webp"
-              alt="Homme marchant sur la neige pendant l'ascension des Alpes" width="550" height="550">
+              alt="Homme marchant sur la neige pendant l'ascension des Alpes" width="550" height="550" loading="lazy">
           </div>
         </div>
       </div>
 
       <!---------- Forfaits ---------->
-      <section class="package-section">
+      <section class="package-section transition-section" id="target4" :class="{ visible: isElementVisible[3] }">
         <h2>Forfaits</h2>
         <div class="package-grid">
           <div class="package-card-container">
@@ -177,7 +213,7 @@ onMounted(() => {
 
 
       <!---------- Newsletter de grimpeur ---------->
-      <section class="newsletter-section">
+      <section class="newsletter-section transition-section" id="target5" :class="{ visible: isElementVisible[4] }">
         <h2>Newsletter de grimpeur</h2>
         <p>Recevez notre newsletter quotidienne sur les ascensions actuelles des légendaires Alpes.</p>
         <NewsletterSignup />
@@ -187,7 +223,7 @@ onMounted(() => {
 </template>
 
 <style scoped>
-/**** Transition de la page au chargement ****/
+/****** Transition de la page au chargement ******/
 .fade-slide-enter-active {
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
@@ -202,7 +238,21 @@ onMounted(() => {
   transform: translateY(0);
 }
 
-/************ Hero section **************/
+
+/****** Animation de chargement de section ******/
+.transition-section {
+  opacity: 0;
+  transform: translateY(250px);
+  transition: all 0.9s ease-in-out;
+}
+
+.transition-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/****** Hero section ******/
 .hero {
   position: relative;
   text-align: center;
@@ -334,7 +384,7 @@ onMounted(() => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 3rem 2rem;
+  padding: 3rem 2rem 9rem;
 }
 
 .activities-container h2 {
@@ -385,13 +435,20 @@ onMounted(() => {
 .activity-img {
   display: flex;
   justify-content: center;
+  overflow: hidden;
+  border-radius: var(--radius);
 }
 
 .activity-img img {
   width: 100%;
   max-width: 550px;
   height: auto;
+  transition: transform 0.5s ease-in-out;
   border-radius: var(--radius);
+}
+
+.activity:hover img {
+  transform: scale(1.05);
 }
 
 
@@ -400,7 +457,7 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 6rem;
+  padding-bottom: 5rem;
 }
 
 .package-section h2,
@@ -521,7 +578,7 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10rem 1rem;
+  padding: 5rem 1rem 10rem;
 }
 
 .newsletter-section h2,

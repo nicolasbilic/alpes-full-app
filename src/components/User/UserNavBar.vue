@@ -86,9 +86,9 @@ const active = ref('active');
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="24" height="24"
           stroke-width="2.0" stroke="currentColor">
           <title>Ouvrir le menu</title>
-          <path class="bar" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5" />
-          <path class="bar" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" d="M3.75 12.75h16.5" />
-          <path class="bar" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" d="M3.75 18.75h16.5" />
+          <path class="bar top" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5" />
+          <path class="bar middle" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" d="M3.75 12.75h16.5" />
+          <path class="bar bottom" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" d="M3.75 18.75h16.5" />
         </svg>
       </a>
       <!--- NavMenu Mobile --->
@@ -333,30 +333,21 @@ nav #openBtn {
   cursor: pointer;
 }
 
-nav #openBtn svg:hover {
-  animation: tilt-shaking 0.5s;
+svg .bar {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: center;
 }
 
-@keyframes tilt-shaking {
-  0% {
-    transform: rotate(0deg);
-  }
+#openBtn svg:hover .top {
+  transform: translateX(-40%);
+}
 
-  25% {
-    transform: rotate(10deg);
-  }
+#openBtn svg:hover .middle {
+  opacity: 0;
+}
 
-  50% {
-    transform: rotate(0eg);
-  }
-
-  75% {
-    transform: rotate(-10deg);
-  }
-
-  100% {
-    transform: rotate(0deg);
-  }
+#openBtn svg:hover .bottom {
+  transform: translateX(40%);
 }
 
 .burger-menu {
@@ -372,14 +363,10 @@ nav #openBtn svg:hover {
   justify-content: center;
   background: linear-gradient(to bottom, #396180, #1e4265);
   z-index: 100;
-  /* clip-path: circle(0% at 100% 0); */
-  /* circle(<rayon> à la <position-x> <position-y>) */
-  /* transition: clip-path 650ms; */
 }
 
 .burger-menu.active-burger-menu {
   transform: translateY(0);
-  /* clip-path: circle(141.4% at 100% 0); */
 }
 
 .burger-menu ul {

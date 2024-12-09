@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import UserNavBar from '../../components/User/UserNavBar.vue';
 const show = ref(false);
 onMounted(() => {
@@ -16,7 +16,7 @@ onMounted(() => {
         <div class="residences">
           <div class="residence">
             <div class="img-container">
-              <img src="../../assets/webp/chalet-cimes.webp" alt="Chalet des Cimes">
+              <img src="../../assets/webp/chalet-cimes.webp" alt="Chalet des Cimes" fetchpriority="high">
             </div>
             <div class="link-to-residence">
               <p>Chalet des Cimes</p>
@@ -29,7 +29,7 @@ onMounted(() => {
           </div>
           <div class="residence">
             <div class="img-container">
-              <img src="../../assets/webp/chalet-alpestre.webp" alt="Refuge Alpestre">
+              <img src="../../assets/webp/chalet-alpestre.webp" alt="Refuge Alpestre" fetchpriority="high">
             </div>
             <div class="link-to-residence">
               <p>Refuge Alpestre</p>
@@ -42,7 +42,7 @@ onMounted(() => {
           </div>
           <div class="residence">
             <div class="img-container">
-              <img src="../../assets/webp/evasion-montagnarde.webp" alt="Évasion montagnarde">
+              <img src="../../assets/webp/evasion-montagnarde.webp" alt="Évasion montagnarde" fetchpriority="high">
             </div>
             <div class="link-to-residence">
               <p>La montagne</p>
@@ -138,20 +138,33 @@ onMounted(() => {
 </template>
 
 <style scoped>
-/***** Animation de chargement *****/
-.fade-slide-enter-active {
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
+/****** Animation de chargement ******/
 .fade-slide-enter-from {
   opacity: 0;
   transform: translateY(30px);
+}
+
+.fade-slide-enter-active {
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .fade-slide-enter-to {
   opacity: 1;
   transform: translateY(0);
 }
+
+/***** Animation de chargement de section *****/
+.transition-section {
+  opacity: 0;
+  transform: translateY(0px);
+  transition: all 0.9s ease-in-out;
+}
+
+.transition-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
 /****** Global ******/
 .residences-container {

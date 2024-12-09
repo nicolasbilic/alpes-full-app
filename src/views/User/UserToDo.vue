@@ -212,7 +212,7 @@ ul li::before {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s;
+  transition: transform 0.5s ease-in-out;
   border-radius: var(--radius);
 
   &:hover {
