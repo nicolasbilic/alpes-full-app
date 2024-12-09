@@ -50,9 +50,7 @@ onUnmounted(() => {
 <template>
   <transition name="fade-slide">
     <section class="about-page" v-if="show">
-      <!-- <section class="about-page"> -->
       <UserNavBar navColor="black" />
-      <!-- <div class="about-header"> -->
       <transition name="fade-slide-up">
         <div class="about-header" v-if="showHeader">
           <figure>

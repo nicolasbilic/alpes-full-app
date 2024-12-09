@@ -78,7 +78,8 @@ onMounted(() => {
           </div>
         </section>
         <figure>
-          <img src="../../assets/webp/snowy-mountain-alps.webp" alt="Les Alpes enneigées" width="745" height="447">
+          <img src="../../assets/webp/snowy-mountain-alps.webp" alt="Les Alpes enneigées" width="745" height="447"
+            loading="lazy">
         </figure>
       </div>
     </div>

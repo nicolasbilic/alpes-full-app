@@ -1,9 +1,42 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import UserNavBar from '../../components/User/UserNavBar.vue';
 const show = ref(false);
+
+// Références pour chaque élément (avec un état de visibilité unique)
+const isElementVisible = ref([false, false, false]); // Un état pour chaque div visible
+// Suivi des éléments déjà animés pour éviter les répétitions (reste en place)
+const hasElementBeenVisible = ref([false, false, false]);
+
+const checkVisibility = () => {
+  const elements = [
+    document.getElementById('target1'),
+    document.getElementById('target2'),
+    document.getElementById('target3'),
+  ];
+
+  elements.forEach((element, index) => {
+    if (element && !hasElementBeenVisible.value[index]) {
+      const rect = element.getBoundingClientRect();
+      // Si l'élément est visible et qu'il n'a pas déjà été marqué comme visible
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        isElementVisible.value[index] = true;
+        hasElementBeenVisible.value[index] = true;  // Marquer l'élément comme déjà visible
+      }
+    }
+  });
+};
+
 onMounted(() => {
   show.value = true;
+  window.addEventListener('scroll', checkVisibility);
+  window.addEventListener('resize', checkVisibility);
+  checkVisibility();
+});
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', checkVisibility);
+  window.removeEventListener('resize', checkVisibility);
 });
 </script>
 
@@ -11,7 +44,7 @@ onMounted(() => {
   <transition name="fade-slide">
     <div v-if="show">
       <UserNavBar navColor="black" />
-      <section v-once class="todo-section">
+      <section class="todo-section">
         <h1>À faire</h1>
         <div class="activities">
           <div class="activity">
@@ -35,7 +68,7 @@ onMounted(() => {
               <img width="343" height="400" src="../../assets/webp/alpes-mont-blanc.webp" alt="Vue du Mont Blanc">
             </div>
           </div>
-          <div class="activity">
+          <div class="activity transition-section" id="target1" :class="{ visible: isElementVisible[0] }">
             <div class="activity-content">
               <h2>Alpinisme</h2>
               <p>Partez à l’assaut des plus hauts sommets des Alpes avec des guides expérimentés. Une aventure
@@ -53,10 +86,11 @@ onMounted(() => {
               <RouterLink to="#" aria-label="En savoir plus">En savoir plus</RouterLink>
             </div>
             <div class="activity-img">
-              <img width="343" height="400" src="../../assets/webp/alpes-alpinisme.webp" alt="Vue du Mont Blanc">
+              <img width="343" height="400" src="../../assets/webp/alpes-alpinisme.webp" alt="Vue du Mont Blanc"
+                loading="lazy">
             </div>
           </div>
-          <div class="activity">
+          <div class="activity transition-section" id="target2" :class="{ visible: isElementVisible[1] }">
             <div class="activity-content">
               <h2>Escalade Vertigineuse</h2>
               <p>Défiez les parois rocheuses des Alpes avec des itinéraires d’escalade adaptés à tous les niveaux.
@@ -74,11 +108,11 @@ onMounted(() => {
               <RouterLink to="#" aria-label="En savoir plus">En savoir plus</RouterLink>
             </div>
             <div class="activity-img">
-              <!-- <img width="343" height="400" src="../../assets/webp/grimper-alpes.jpg" alt="Vue du Mont Blanc"> -->
-              <img width="343" height="400" src="../../assets/webp/grimper-les-alpes-2.jpg" alt="Vue du Mont Blanc">
+              <img width="343" height="400" src="../../assets/webp/grimper-les-alpes-2.jpg" alt="Vue du Mont Blanc"
+                loading="lazy">
             </div>
           </div>
-          <div class="activity">
+          <div class="activity transition-section" id="target3" :class="{ visible: isElementVisible[2] }">
             <div class="activity-content">
               <h2>Randonnée Panoramique</h2>
               <p>Explorez des sentiers pittoresques offrant des vues à couper le souffle sur les Alpes. Parfait pour les
@@ -96,7 +130,8 @@ onMounted(() => {
               <RouterLink to="#" aria-label="En savoir plus">En savoir plus</RouterLink>
             </div>
             <div class="activity-img">
-              <img width="343" height="400" src="../../assets/webp/randonnee-the-alps.jpg" alt="Vue du Mont Blanc">
+              <img width="343" height="400" src="../../assets/webp/randonnee-the-alps.jpg" alt="Vue du Mont Blanc"
+                loading="lazy">
             </div>
           </div>
         </div>
@@ -106,7 +141,7 @@ onMounted(() => {
 </template>
 
 <style scoped>
-/***** Animation de chargement *****/
+/****** Animation de chargement ******/
 .fade-slide-enter-active {
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
@@ -121,7 +156,20 @@ onMounted(() => {
   transform: translateY(0);
 }
 
-/****** Général ******/
+
+/****** Animation de chargement de section ******/
+.transition-section {
+  opacity: 0;
+  transform: translateY(250px);
+  transition: all 0.9s ease-in-out;
+}
+
+.transition-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/****** Global ******/
 .todo-section h1 {
   font-size: var(--fs-heading);
   text-align: center;
