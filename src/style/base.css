@@ -23,6 +23,7 @@
 
   --fs-h1: 50px;
   --fs-h2: 32px;
+  --fs-20px: 20px;
 
   --c-divider-light: #EAECF0;
   --radius: 8px;
@@ -30,6 +31,7 @@
 
 /* semantic color variables for this project */
 :root {
+  /* colors */
   --color-background: var(--c-white);
   --color-background-soft: var(--c-white-soft);
   --color-background-dark: var(--c-black);
@@ -48,13 +50,16 @@
   --color-input-border: var(--c-grey-soft);
   --color-dropdown-hover: var(--c-grey-mute);
 
-  --fs-heading: var(--fs-h1);
-  --fs-subheading: var(--fs-h2);
+  /* font sizes */
+  --heading-size: var(--fs-h1);
+  --subheading-size: var(--fs-h2);
+  --text-20px-size: var(--fs-20px);
 
-  --fw-hero-heading: var(--fw-extrabold);
-  --fw-heading: var(--fw-bolder);
-  --fw-strong: var(--fw-bold);
-  --fw-highlight: var(--fw-sm-bold);
+  /* font weights */
+  --font-weight-hero-heading: var(--fw-extrabold);
+  --font-weight-heading: var(--fw-bolder);
+  --font-weight-strong: var(--fw-bold);
+  --font-weight-highlight: var(--fw-sm-bold);
 }
 
 *,
@@ -86,5 +91,4 @@ h4,
 h5,
 h6 {
   color: var(--color-text-accent-dark);
-  /* font-weight: var(--fw-strong); */
 }

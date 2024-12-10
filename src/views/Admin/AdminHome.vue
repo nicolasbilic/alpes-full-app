@@ -113,7 +113,7 @@ button:hover {
 
 .brand-container span {
   padding-top: 6px;
-  font-weight: var(--fw-strong);
+  font-weight: var(--font-weight-strong);
   color: var(--c-white-mute);
 }
 
@@ -138,7 +138,7 @@ nav button {
   gap: 8px;
   min-width: 170px;
   padding: 10px 0;
-  font-weight: var(--fw-strong);
+  font-weight: var(--font-weight-strong);
   color: var(--c-white-mute);
   background-color: var(--color-background-button-secondary);
   border-radius: var(--radius);

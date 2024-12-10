@@ -148,7 +148,7 @@ footer {
 }
 
 ul li {
-  font-weight: var(--fw-strong);
+  font-weight: var(--font-weight-strong);
 }
 
 li a {
@@ -170,7 +170,7 @@ li a:focus {
 
 .experiences-links {
   font-size: 15px;
-  font-weight: var(--fw-highlight);
+  font-weight: var(--font-weight-highlight);
 }
 
 .copyright {
@@ -179,7 +179,7 @@ li a:focus {
 
 .copyright span {
   font-size: 15px;
-  font-weight: var(--fw-highlight);
+  font-weight: var(--font-weight-highlight);
 }
 
 .active {
@@ -216,7 +216,7 @@ li a:focus {
 }
 
 .mobile-copyright a {
-  font-weight: var(--fw-strong);
+  font-weight: var(--font-weight-strong);
 }
 
 

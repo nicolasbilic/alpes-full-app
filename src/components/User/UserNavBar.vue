@@ -200,7 +200,7 @@ nav {
   align-items: center;
   gap: 10px;
   color: var(--color-text-accent-light);
-  font-weight: var(--fw-strong);
+  font-weight: var(--font-weight-strong);
   font-size: 16px;
   margin-right: auto;
 }
@@ -224,7 +224,7 @@ nav .booking-container {
 
 .booking-container a {
   color: var(--color-text-accent-light);
-  font-weight: var(--fw-strong);
+  font-weight: var(--font-weight-strong);
   padding: 5px 15px;
   outline: 2px solid var(--color-outline-light);
   border-radius: var(--radius);
@@ -422,7 +422,7 @@ nav .burger-menu li a.active::after {
   }
 
   nav .brand {
-    font-size: 20px;
+    font-size: var(--text-20px-size);
   }
 
   .links-container {

@@ -232,7 +232,7 @@ article {
 }
 
 article h2 {
-  font-size: 20px;
+  font-size: var(--text-20px-size);
   color: #202020;
   margin: 30px 0 15px;
 }
@@ -254,7 +254,7 @@ article p {
   }
 
   .relative-container h1 {
-    font-size: var(--fs-heading);
+    font-size: var(--heading-size);
   }
 
   article h2 {

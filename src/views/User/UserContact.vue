@@ -265,7 +265,7 @@ const resetConfirmationMessage = () => {
 }
 
 .contact-page h1 {
-  font-size: var(--fs-heading);
+  font-size: var(--heading-size);
   text-align: center;
   padding-bottom: 1rem;
 }
@@ -313,7 +313,7 @@ input {
 input[type='submit'] {
   width: 100%;
   font-size: 16px;
-  font-weight: var(--fw-strong);
+  font-weight: var(--font-weight-strong);
   color: var(--color-text-accent-light);
   padding: 10px;
   margin-bottom: 20px;

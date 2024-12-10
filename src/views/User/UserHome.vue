@@ -291,7 +291,7 @@ onUnmounted(() => {
 
 .hero h1 {
   color: var(--c-white-mute);
-  font-weight: var(--fw-strong);
+  font-weight: var(--font-weight-strong);
   letter-spacing: 15px;
   line-height: 60px;
   margin-left: calc(15px / 2);
@@ -299,7 +299,7 @@ onUnmounted(() => {
 
 .hero h1 span {
   font-size: 70px;
-  font-weight: var(--fw-extrabold);
+  font-weight: var(--font-weight-hero-heading);
   line-height: 90px;
 }
 
@@ -312,7 +312,7 @@ onUnmounted(() => {
 .hero-booking a {
   font-size: 18px;
   color: var(--color-text-accent-dark);
-  font-weight: var(--fw-strong);
+  font-weight: var(--font-weight-strong);
   background-color: var(--c-white-mute);
   border-radius: var(--radius);
   padding: 10px 20px;
@@ -388,8 +388,8 @@ onUnmounted(() => {
 }
 
 .activities-container h2 {
-  font-size: var(--fs-subheading);
-  font-weight: var(--fw-heading);
+  font-size: var(--subheading-size);
+  font-weight: var(--font-weight-heading);
   text-transform: uppercase;
   padding-bottom: 16px;
 }
@@ -417,7 +417,7 @@ onUnmounted(() => {
   display: inline-block;
   font-size: 18px;
   color: var(--c-white-mute);
-  font-weight: var(--fw-strong);
+  font-weight: var(--font-weight-strong);
   text-transform: uppercase;
   background-color: var(--color-background-dark);
   border-radius: var(--radius);
@@ -462,8 +462,8 @@ onUnmounted(() => {
 
 .package-section h2,
 .newsletter-section h2 {
-  font-size: var(--fs-heading);
-  font-weight: var(--fw-strong);
+  font-size: var(--heading-size);
+  font-weight: var(--font-weight-strong);
   padding-bottom: 1rem;
 }
 
@@ -492,14 +492,14 @@ onUnmounted(() => {
 
 .package-card .price-tag {
   font-size: 45px;
-  font-weight: var(--fw-strong);
+  font-weight: var(--font-weight-strong);
   color: var(--color-text-primary);
   padding-bottom: 10px;
 }
 
 .package-card .pass-type {
-  font-size: 20px;
-  font-weight: var(--fw-highlight);
+  font-size: var(--text-20px-size);
+  font-weight: var(--font-weight-highlight);
   color: var(--color-text-primary);
   margin-bottom: 20px;
 }
@@ -538,7 +538,7 @@ onUnmounted(() => {
 
 .package-card .book-it {
   font-size: 1rem;
-  font-weight: var(--fw-strong);
+  font-weight: var(--font-weight-strong);
   color: #fff;
   width: calc(100% - 0px);
   padding: 10px;
@@ -566,7 +566,7 @@ onUnmounted(() => {
 
 .popular-card span {
   position: absolute;
-  font-weight: var(--fw-highlight);
+  font-weight: var(--font-weight-highlight);
   top: -42px;
   right: 5px;
 }
@@ -600,7 +600,7 @@ onUnmounted(() => {
   }
 
   .hero-booking a {
-    font-size: 20px;
+    font-size: var(--text-20px-size);
     padding: 10px 30px;
   }
 }

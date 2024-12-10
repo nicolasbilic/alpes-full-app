@@ -175,7 +175,7 @@ onMounted(() => {
 }
 
 h1 {
-  font-size: var(--fs-heading);
+  font-size: var(--heading-size);
   padding-bottom: 4rem;
 }
 
@@ -215,7 +215,7 @@ h1 {
 
 .link-to-residence p {
   font-size: 18px;
-  font-weight: var(--fw-strong);
+  font-weight: var(--font-weight-strong);
   text-align: center;
   padding-top: 1rem;
   cursor: pointer;

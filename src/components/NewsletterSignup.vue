@@ -182,7 +182,7 @@ const handleSubmit = (event: Event) => {
   padding: 10px;
   background-color: var(--color-background-button-secondary);
   color: #fff;
-  font-weight: var(--fw-strong);
+  font-weight: var(--font-weight-strong);
   font-size: 16px;
   border: none;
   border-radius: var(--radius);

@@ -87,7 +87,7 @@
 
 .brand-container span {
   padding-top: 6px;
-  font-weight: var(--fw-strong);
+  font-weight: var(--font-weight-strong);
 }
 
 .login-page {
@@ -123,7 +123,7 @@ p {
 
 label {
   padding-bottom: 5px;
-  font-weight: var(--fw-highlight);
+  font-weight: var(--font-weight-highlight);
 }
 
 input {

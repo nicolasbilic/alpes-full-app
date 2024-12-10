@@ -180,7 +180,7 @@ nav .menu-item .sub-menu .menu-item:hover {
 nav .menu-item .sub-menu .menu-item a {
   display: block;
   color: var(--color-text-primary);
-  font-weight: var(--fw-highlight);
+  font-weight: var(--font-weight-highlight);
   width: 100%;
   height: 100%;
   padding: 8px 20px;

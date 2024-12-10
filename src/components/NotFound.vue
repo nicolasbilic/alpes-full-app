@@ -37,7 +37,7 @@
 .error-404 h1 {
   font-size: 18px;
   color: var(--color-text-accent-dark);
-  font-weight: var(--fw-strong);
+  font-weight: var(--font-weight-strong);
   text-transform: uppercase;
   padding: 10px 20px 10px;
   margin-bottom: 5px;
@@ -51,7 +51,7 @@
 .error-404 a {
   font-size: 18px;
   color: var(--c-white-mute);
-  font-weight: var(--fw-strong);
+  font-weight: var(--font-weight-strong);
   text-transform: uppercase;
   padding: 10px 20px;
   background-color: var(--color-background-dark);

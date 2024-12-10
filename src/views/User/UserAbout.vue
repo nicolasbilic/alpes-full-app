@@ -275,7 +275,7 @@ onUnmounted(() => {
 }
 
 h1 {
-  font-size: var(--fs-heading);
+  font-size: var(--heading-size);
   padding: 0 1rem;
 }
 
@@ -314,7 +314,7 @@ figure figcaption {
 }
 
 .our-company p {
-  font-size: 20px;
+  font-size: var(--text-20px-size);
   color: var(--color-text-info);
   padding: 0 1rem;
 }
@@ -354,7 +354,7 @@ figure figcaption {
 .figures-item span {
   display: inline-block;
   font-size: 40px;
-  font-weight: var(--fw-strong);
+  font-weight: var(--font-weight-strong);
   color: var(--c-blue);
   transition: transform .3s;
 }
@@ -365,7 +365,7 @@ figure figcaption {
 }
 
 .figures p {
-  font-weight: var(--fw-highlight);
+  font-weight: var(--font-weight-highlight);
 }
 
 .summit-img-container {
@@ -457,7 +457,7 @@ figure figcaption {
 }
 
 .team-member p:nth-child(2) {
-  font-weight: var(--fw-highlight);
+  font-weight: var(--font-weight-highlight);
   padding-top: 16px;
 }
 
@@ -503,7 +503,7 @@ figure figcaption {
 }
 
 .service p:nth-child(2) {
-  font-weight: var(--fw-highlight);
+  font-weight: var(--font-weight-highlight);
   padding-top: 16px;
 }
 

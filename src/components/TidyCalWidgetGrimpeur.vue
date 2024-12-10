@@ -63,7 +63,7 @@ onClickOutside(tidyWidget, closeWidget);
 .tidycal-button {
   display: block;
   font-size: 1rem;
-  font-weight: var(--fw-strong);
+  font-weight: var(--font-weight-strong);
   color: var(--color-text-accent-light);
   width: 100%;
   padding: 10px;

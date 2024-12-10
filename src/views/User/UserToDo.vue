@@ -171,7 +171,7 @@ onUnmounted(() => {
 
 /****** Global ******/
 .todo-section h1 {
-  font-size: var(--fs-heading);
+  font-size: var(--heading-size);
   text-align: center;
   padding-bottom: 5rem;
 }
@@ -233,7 +233,7 @@ ul li::before {
   display: inline-block;
   font-size: 18px;
   color: var(--c-white-mute);
-  font-weight: var(--fw-strong);
+  font-weight: var(--font-weight-strong);
   text-transform: uppercase;
   background-color: var(--color-background-dark);
   border-radius: var(--radius);

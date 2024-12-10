@@ -119,7 +119,7 @@ onMounted(() => {
 }
 
 .package-section h1 {
-  font-size: var(--fs-heading);
+  font-size: var(--heading-size);
   padding-bottom: 1rem;
 }
 
@@ -148,13 +148,13 @@ onMounted(() => {
 
 .package-card .price-tag {
   font-size: 45px;
-  font-weight: var(--fw-strong);
+  font-weight: var(--font-weight-strong);
   padding-bottom: 10px;
 }
 
 .package-card .pass-type {
-  font-size: 20px;
-  font-weight: var(--fw-highlight);
+  font-size: var(--text-20px-size);
+  font-weight: var(--font-weight-highlight);
   margin-bottom: 20px;
 }
 
@@ -205,7 +205,7 @@ onMounted(() => {
   position: absolute;
   top: -204px;
   right: -25px;
-  font-weight: var(--fw-highlight);
+  font-weight: var(--font-weight-highlight);
 }
 
 figure {
