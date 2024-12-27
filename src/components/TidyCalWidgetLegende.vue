@@ -40,7 +40,7 @@ onClickOutside(tidyWidget, closeWidget);
 
   <!-- Conteneur du widget -->
   <div v-if="showWidget" class="tidycal-widget-container" ref="tidyWidget">
-    <button
+    <!-- <button
       class="close-button"
       @click="closeWidget"
       aria-label="Fermer le widget"
@@ -60,7 +60,7 @@ onClickOutside(tidyWidget, closeWidget);
           fill="none"
         />
       </svg>
-    </button>
+    </button> -->
     <div
       class="tidycal-embed"
       data-path="nicolasbilicdev/forfait-legende"
@@ -107,7 +107,7 @@ onClickOutside(tidyWidget, closeWidget);
   z-index: 99;
 }
 
-.close-button {
+/* .close-button {
   position: absolute;
   top: -50px;
   left: 40px;
@@ -123,7 +123,7 @@ onClickOutside(tidyWidget, closeWidget);
   border-radius: 50%;
   cursor: pointer;
   border: none;
-}
+} */
 
 .close-icon {
   display: block;

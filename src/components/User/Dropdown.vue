@@ -195,7 +195,7 @@ nav .menu-item .sub-menu .menu-item a {
   font-weight: var(--font-weight-highlight);
   width: 100%;
   height: 100%;
-  padding: 8px 20px;
+  padding: 8px 10px;
 }
 
 nav .sub-menu .menu-item a:hover,
@@ -252,8 +252,8 @@ nav .burger-menu .menu-item a:focus {
 nav .burger-menu .menu-item .sub-menu {
   position: absolute;
   width: max-content;
-  top: 100%;
-  left: calc(50% + 0px);
+  top: 80%;
+  left: calc(83% + 0px);
   transform: translateX(-50%);
   text-align: center;
   padding: 0px;
@@ -268,7 +268,11 @@ nav .burger-menu .menu-item .sub-menu .menu-item a:hover {
 }
 @media (width > 500px) {
   nav .burger-menu .menu-item .sub-menu {
+    top: 50%;
     left: calc(50% + 160px);
+  }
+  nav .menu-item .sub-menu .menu-item a {
+    padding: 8px 20px;
   }
 }
 </style>
