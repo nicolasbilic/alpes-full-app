@@ -428,18 +428,15 @@ svg .bar {
   transform-origin: center;
 }
 
-#openBtn svg:hover .top,
-#openBtn svg:focus .top {
+#openBtn:hover svg .top {
   transform: translateX(-40%);
 }
 
-#openBtn svg:hover .middle,
-#openBtn svg:focus .middle {
+#openBtn:hover svg .middle {
   opacity: 0;
 }
 
-#openBtn svg:hover .bottom,
-#openBtn svg:focus .bottom {
+#openBtn:hover svg .bottom {
   transform: translateX(40%);
 }
 
