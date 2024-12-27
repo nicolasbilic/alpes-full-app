@@ -37,6 +37,18 @@ const services = ref([
 ]);
 
 const active = ref("active");
+
+const isHovered = ref(false); // état du survol simulé
+
+function handleClick() {
+  toggleBM();
+  isHovered.value = true; // Active l'effet de "survol"
+
+  // Désactive l'effet après un court délai
+  setTimeout(() => {
+    isHovered.value = false;
+  }, 300); // Ajustez le délai en fonction de l'effet CSS
+}
 </script>
 
 <template>
@@ -122,7 +134,11 @@ const active = ref("active");
         </RouterLink>
       </div>
       <!------------- Burger Button ------------->
-      <a id="openBtn" @click="toggleBM" :class="{ 'hamburger-white': BM }">
+      <a
+        id="openBtn"
+        @click="handleClick"
+        :class="{ 'hamburger-white': BM, 'hover-effect': isHovered }"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -428,15 +444,18 @@ svg .bar {
   transform-origin: center;
 }
 
-#openBtn:hover svg .top {
+#openBtn:hover svg .top,
+#openBtn.hover-effect svg .top {
   transform: translateX(-40%);
 }
 
-#openBtn:hover svg .middle {
+#openBtn:hover svg .middle,
+#openBtn.hover-effect svg .middle {
   opacity: 0;
 }
 
-#openBtn:hover svg .bottom {
+#openBtn:hover svg .bottom,
+#openBtn.hover-effect svg .bottom {
   transform: translateX(40%);
 }
 
