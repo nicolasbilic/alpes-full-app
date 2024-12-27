@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { computed } from 'vue';
-import Dropdown from './Dropdown.vue';
+import { ref } from "vue";
+import { computed } from "vue";
+import Dropdown from "./Dropdown.vue";
 
 const props = defineProps({
   navColor: {
     type: String,
-    default: 'white',
+    default: "white",
   },
 });
 const navColorClass = computed(() => {
-  return props.navColor === 'black' ? 'secondary-nav' : 'primary-nav';
+  return props.navColor === "black" ? "secondary-nav" : "primary-nav";
 });
 
 // Burger Menu
@@ -18,21 +18,25 @@ const BM = ref(false);
 const toggleBM = () => {
   BM.value = !BM.value;
   // Add or remove the class active-burger-menu to the div with class burger-menu
-  document.getElementsByClassName('burger-menu')[0].classList.toggle('active-burger-menu');
+  document
+    .getElementsByClassName("burger-menu")[0]
+    .classList.toggle("active-burger-menu");
 };
 
 const closeBM = () => {
   BM.value = false;
-  document.getElementsByClassName('burger-menu')[0].classList.remove('active-burger-menu');
+  document
+    .getElementsByClassName("burger-menu")[0]
+    .classList.remove("active-burger-menu");
 };
 
 // elements of dropdown menu
 const services = ref([
-  { title: 'À faire', link: '/a-faire' },
-  { title: 'Résidences', link: '/residences' },
+  { title: "À faire", link: "/a-faire" },
+  { title: "Résidences", link: "/residences" },
 ]);
 
-const active = ref('active');
+const active = ref("active");
 </script>
 
 <template>
@@ -40,11 +44,31 @@ const active = ref('active');
     <nav :class="navColorClass">
       <div class="brand-container" :class="navColorClass">
         <RouterLink class="brand" to="/" title="Accueil Alpes">
-          <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path class="inner-path" d="M24.6123 26.2207L27.1567 29.5103" stroke="white" stroke-width="3"
-              stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-            <path class="inner-path" d="M5.53516 32.8398L17.8923 17.5273L24.612 26.2197L31.6226 17.5273L43.4642 32.8398"
-              stroke="white" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+          <svg
+            width="50"
+            height="50"
+            viewBox="0 0 50 50"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              class="inner-path"
+              d="M24.6123 26.2207L27.1567 29.5103"
+              stroke="white"
+              stroke-width="3"
+              stroke-miterlimit="10"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              class="inner-path"
+              d="M5.53516 32.8398L17.8923 17.5273L24.612 26.2197L31.6226 17.5273L43.4642 32.8398"
+              stroke="white"
+              stroke-width="3"
+              stroke-miterlimit="10"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
           ALPES
         </RouterLink>
@@ -57,20 +81,36 @@ const active = ref('active');
             </RouterLink>
           </li>
           <li>
-            <Dropdown :active-class="active" title="Expériences" :items="services" />
+            <Dropdown
+              :active-class="active"
+              title="Expériences"
+              :items="services"
+            />
           </li>
           <li>
-            <RouterLink :active-class="active" to="/reservations" aria-label="Réservations">
+            <RouterLink
+              :active-class="active"
+              to="/reservations"
+              aria-label="Réservations"
+            >
               Réservations
             </RouterLink>
           </li>
           <li>
-            <RouterLink :active-class="active" to="/a-propos" aria-label="À propos">
+            <RouterLink
+              :active-class="active"
+              to="/a-propos"
+              aria-label="À propos"
+            >
               À propos
             </RouterLink>
           </li>
           <li>
-            <RouterLink :active-class="active" to="/contact" aria-label="Contact">
+            <RouterLink
+              :active-class="active"
+              to="/contact"
+              aria-label="Contact"
+            >
               Contact
             </RouterLink>
           </li>
@@ -83,37 +123,86 @@ const active = ref('active');
       </div>
       <!------------- Burger Button ------------->
       <a id="openBtn" @click="toggleBM" :class="{ 'hamburger-white': BM }">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="24" height="24"
-          stroke-width="2.0" stroke="currentColor">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          width="24"
+          height="24"
+          stroke-width="2.0"
+          stroke="currentColor"
+        >
           <title>Ouvrir le menu</title>
-          <path class="bar top" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5" />
-          <path class="bar middle" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" d="M3.75 12.75h16.5" />
-          <path class="bar bottom" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" d="M3.75 18.75h16.5" />
+          <path
+            class="bar top"
+            stroke="#fff"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 6.75h16.5"
+          />
+          <path
+            class="bar middle"
+            stroke="#fff"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 12.75h16.5"
+          />
+          <path
+            class="bar bottom"
+            stroke="#fff"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 18.75h16.5"
+          />
         </svg>
       </a>
       <!--- NavMenu Mobile --->
       <div class="burger-menu">
         <ul>
           <li>
-            <RouterLink :active-class="active" to="/" @click="closeBM" aria-label="Accueil">
+            <RouterLink
+              :active-class="active"
+              to="/"
+              @click="closeBM"
+              aria-label="Accueil"
+            >
               Accueil
             </RouterLink>
           </li>
           <li>
-            <Dropdown title="Expériences" :items="services" :active-class="active" />
+            <Dropdown
+              title="Expériences"
+              :items="services"
+              :active-class="active"
+            />
           </li>
           <li>
-            <RouterLink :active-class="active" to="/reservations" @click="closeBM" aria-label="Réservations">
+            <RouterLink
+              :active-class="active"
+              to="/reservations"
+              @click="closeBM"
+              aria-label="Réservations"
+            >
               Réservations
             </RouterLink>
           </li>
           <li>
-            <RouterLink :active-class="active" to="/a-propos" @click="closeBM" aria-label="À propos">
+            <RouterLink
+              :active-class="active"
+              to="/a-propos"
+              @click="closeBM"
+              aria-label="À propos"
+            >
               À propos
             </RouterLink>
           </li>
           <li>
-            <RouterLink :active-class="active" to="/contact" @click="closeBM" aria-label="Contact">
+            <RouterLink
+              :active-class="active"
+              to="/contact"
+              @click="closeBM"
+              aria-label="Contact"
+            >
               Contact
             </RouterLink>
           </li>
@@ -173,14 +262,15 @@ nav {
 
 /* stalactites */
 .links a::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 15px;
   left: 50%;
   transform: translateX(-50%) scale(0) rotateX(180deg);
   width: 90px;
   height: 30px;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 30"><path d="M0 30 L5 10 L10 20 L15 5 L20 25 L25 15 L30 30 L35 10 L40 20 L45 5 L50 25 L55 15 L60 30 L65 10 L70 20 L75 5 L80 25 L85 15 L90 30 L95 10 L100 30 Z" fill="white"/></svg>') no-repeat center;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 30"><path d="M0 30 L5 10 L10 20 L15 5 L20 25 L25 15 L30 30 L35 10 L40 20 L45 5 L50 25 L55 15 L60 30 L65 10 L70 20 L75 5 L80 25 L85 15 L90 30 L95 10 L100 30 Z" fill="white"/></svg>')
+    no-repeat center;
   background-size: contain;
   transition: transform 0.3s ease;
 }
@@ -234,7 +324,6 @@ nav .booking-container {
   background-color: var(--color-background-dark);
 }
 
-
 /******* Primary Nav (white) *******/
 nav .primary-nav li a {
   color: var(--c-white-mute);
@@ -245,17 +334,17 @@ nav .primary-nav li a.active {
 }
 
 nav .primary-nav li a.active::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 15px;
   left: 50%;
   width: 90px;
   height: 30px;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 30"><path d="M0 30 L5 10 L10 20 L15 5 L20 25 L25 15 L30 30 L35 10 L40 20 L45 5 L50 25 L55 15 L60 30 L65 10 L70 20 L75 5 L80 25 L85 15 L90 30 L95 10 L100 30 Z" fill="white"/></svg>') no-repeat center;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 30"><path d="M0 30 L5 10 L10 20 L15 5 L20 25 L25 15 L30 30 L35 10 L40 20 L45 5 L50 25 L55 15 L60 30 L65 10 L70 20 L75 5 L80 25 L85 15 L90 30 L95 10 L100 30 Z" fill="white"/></svg>')
+    no-repeat center;
   background-size: contain;
   transform: translateX(-50%) scale(0.6) rotateX(180deg);
 }
-
 
 /******* Secondary Nav (black) *******/
 nav .secondary-nav li a {
@@ -268,14 +357,15 @@ nav .secondary-nav a:focus {
 }
 
 nav .secondary-nav a::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 15px;
   left: 50%;
   transform: translateX(-50%) scale(0) rotateX(180deg);
   width: 90px;
   height: 30px;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 30"><path d="M0 30 L5 10 L10 20 L15 5 L20 25 L25 15 L30 30 L35 10 L40 20 L45 5 L50 25 L55 15 L60 30 L65 10 L70 20 L75 5 L80 25 L85 15 L90 30 L95 10 L100 30 Z" fill="black"/></svg>') no-repeat center;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 30"><path d="M0 30 L5 10 L10 20 L15 5 L20 25 L25 15 L30 30 L35 10 L40 20 L45 5 L50 25 L55 15 L60 30 L65 10 L70 20 L75 5 L80 25 L85 15 L90 30 L95 10 L100 30 Z" fill="black"/></svg>')
+    no-repeat center;
   background-size: contain;
   transition: transform 0.3s ease;
 }
@@ -311,17 +401,17 @@ nav .secondary-nav a:hover::after {
 }
 
 .secondary-nav li a.active::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 15px;
   left: 50%;
   width: 90px;
   height: 30px;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 30"><path d="M0 30 L5 10 L10 20 L15 5 L20 25 L25 15 L30 30 L35 10 L40 20 L45 5 L50 25 L55 15 L60 30 L65 10 L70 20 L75 5 L80 25 L85 15 L90 30 L95 10 L100 30 Z" fill="black"/></svg>') no-repeat center;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 30"><path d="M0 30 L5 10 L10 20 L15 5 L20 25 L25 15 L30 30 L35 10 L40 20 L45 5 L50 25 L55 15 L60 30 L65 10 L70 20 L75 5 L80 25 L85 15 L90 30 L95 10 L100 30 Z" fill="black"/></svg>')
+    no-repeat center;
   background-size: contain;
   transform: translateX(-50%) scale(0.6) rotateX(180deg);
 }
-
 
 /******* Burger Menu *******/
 nav #openBtn {
@@ -338,15 +428,18 @@ svg .bar {
   transform-origin: center;
 }
 
-#openBtn svg:hover .top {
+#openBtn svg:hover .top,
+#openBtn svg:focus .top {
   transform: translateX(-40%);
 }
 
-#openBtn svg:hover .middle {
+#openBtn svg:hover .middle,
+#openBtn svg:focus .middle {
   opacity: 0;
 }
 
-#openBtn svg:hover .bottom {
+#openBtn svg:hover .bottom,
+#openBtn svg:focus .bottom {
   transform: translateX(40%);
 }
 
@@ -386,19 +479,20 @@ svg .bar {
 }
 
 nav .burger-menu li a.active::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 15px;
   left: 50%;
   width: 90px;
   height: 30px;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 30"><path d="M0 30 L5 10 L10 20 L15 5 L20 25 L25 15 L30 30 L35 10 L40 20 L45 5 L50 25 L55 15 L60 30 L65 10 L70 20 L75 5 L80 25 L85 15 L90 30 L95 10 L100 30 Z" fill="white"/></svg>') no-repeat center;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 30"><path d="M0 30 L5 10 L10 20 L15 5 L20 25 L25 15 L30 30 L35 10 L40 20 L45 5 L50 25 L55 15 L60 30 L65 10 L70 20 L75 5 L80 25 L85 15 L90 30 L95 10 L100 30 Z" fill="white"/></svg>')
+    no-repeat center;
   background-size: contain;
   transform: translateX(-50%) scale(0) rotateX(180deg);
 }
 
 .burger-menu a:hover {
-  background-color: rgb(86, 127, 155)
+  background-color: rgb(86, 127, 155);
 }
 
 .burger-menu a.active {
@@ -413,7 +507,6 @@ nav .burger-menu li a.active::after {
   stroke: var(--color-background);
   transition: stroke 0.3s ease-in-out;
 }
-
 
 /******* Media Queries *******/
 @media (width > 1099px) {
